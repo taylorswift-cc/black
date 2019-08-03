@@ -7,8 +7,8 @@ Vue.use(VueRouter)
 
 let router = new VueRouter({
   routes: [
-    { path: '/login', name: login, component: login },
-    { path: '/', name: home, component: home }
+    { path: '/login', name: 'login', component: login },
+    { path: '/', name: 'home', component: home }
   ]
 })
 
