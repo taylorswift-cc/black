@@ -20,7 +20,6 @@ let router = new VueRouter({
       component: home,
       children: [
         { path: '', name: welcome, component: welcome },
-        { path: 'welcome', component: welcome },
         { path: 'article', component: article },
         { path: 'image', component: image },
         { path: 'publish', component: publish },
