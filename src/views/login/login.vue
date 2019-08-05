@@ -28,6 +28,7 @@
 </template>
 
 <script>
+import store from '@/store/store.js'
 export default {
   data () {
     let checkTel = (rule, value, callback) => {
@@ -56,7 +57,6 @@ export default {
 
   methods: {
     login () {
-      console.log(this.loginForm)
       this.$refs.loginForm.validate(valid => {
         if (valid) {
           this.$http
@@ -65,6 +65,7 @@ export default {
               this.loginForm
             )
             .then(result => {
+              store.setUser(result.data.data)
               this.$router.push({
                 path: '/'
               })
