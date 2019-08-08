@@ -48,15 +48,13 @@
         <span class="text">传智播客什么什么公司来的？</span>
         <el-dropdown class="my_dropdown">
           <span class="el-dropdown-link">
-            <img src="../../assets/images/avatar.jpg" style="width:30px;vertical-align:middle" />
-            web前端吊车尾
+            <img :src="photo" style="width:30px;vertical-align:middle" />
+            {{name}}
             <i class="el-icon-arrow-down el-icon--right"></i>
           </span>
           <el-dropdown-menu slot="dropdown">
-            <el-dropdown-item>
-              <span @click="setting">个人设置</span>
-            </el-dropdown-item>
-            <el-dropdown-item>退出登录</el-dropdown-item>
+            <el-dropdown-item @click.native="setting">个人设置</el-dropdown-item>
+            <el-dropdown-item @click.native="logout">退出登录</el-dropdown-item>
           </el-dropdown-menu>
         </el-dropdown>
       </el-header>
@@ -68,10 +66,13 @@
 </template>
 
 <script>
+import store from '@/store/store.js'
 export default {
   data () {
     return {
-      isCollapse: false
+      isCollapse: false,
+      name: '',
+      photo: ''
     }
   },
   methods: {
@@ -80,25 +81,15 @@ export default {
     },
     setting () {
       this.$router.push('/setting')
+    },
+    logout () {
+      store.clearUser()
+      this.$router.push('/login')
     }
-    // home () {
-    //   this.$router.push('/')
-    // },
-    // article () {
-    //   this.$router.push('article')
-    // },
-    // image () {
-    //   this.$router.push('image')
-    // },
-    // publish () {
-    //   this.$router.push('publish')
-    // },
-    // comment () {
-    //   this.$router.push('comment')
-    // },
-    // fans () {
-    //   this.$router.push('fans')
-    // },
+  },
+  created () {
+    this.name = store.getUser().name
+    this.photo = store.getUser().photo
   }
 }
 </script>

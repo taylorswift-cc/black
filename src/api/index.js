@@ -1,7 +1,16 @@
 import axios from 'axios'
 import store from '@/store/store.js'
+import JSONbig from 'json-bigint'
 
 axios.defaults.baseURL = 'http://ttapi.research.itcast.cn/mp/v1_0/'
+
+axios.defaults.transformResponse = [function (data) {
+  if (data) {
+    return JSONbig.parse(data)
+  } else {
+    return data
+  }
+}]
 
 axios.interceptors.request.use((config) => {
   config.headers.Authorization = `Bearer ${store.getUser().token}`

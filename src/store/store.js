@@ -1,10 +1,13 @@
 const KEY = 'hmtt_key'
 
 export default {
-  setUser (user) {
+  setUser  (user) {
     window.sessionStorage.setItem(KEY, JSON.stringify(user))
   },
-  getUser () {
+  getUser  () {
     return JSON.parse(window.sessionStorage.getItem(KEY) || '{}')
+  },
+  clearUser  () {
+    window.sessionStorage.removeItem(KEY)
   }
 }

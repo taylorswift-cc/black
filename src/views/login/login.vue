@@ -57,22 +57,17 @@ export default {
 
   methods: {
     login () {
-      this.$refs.loginForm.validate(valid => {
-        if (valid) {
-          this.$http
-            .post(
-              'http://ttapi.research.itcast.cn/mp/v1_0/authorizations',
-              this.loginForm
-            )
-            .then(result => {
-              store.setUser(result.data.data)
-              this.$router.push({
-                path: '/'
-              })
-            })
-            .catch(() => {
-              this.$message.error('手机号或验证码错误')
-            })
+      this.$refs.loginForm.validate(async valid => {
+        try {
+          const {
+            data: { data }
+          } = await this.$http.post('authorizations', this.loginForm)
+          store.setUser(data)
+          this.$router.push({
+            path: '/'
+          })
+        } catch (err) {
+          this.$message.error('手机号或验证码错误')
         }
       })
     }
