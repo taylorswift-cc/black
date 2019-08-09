@@ -125,7 +125,7 @@ export default {
   },
   methods: {
     edit (id) {
-      this.$router.push(`/publish/?id=${id}`)
+      this.$router.push(`/publish?id=${id}`)
     },
     del (id) {
       this.$confirm('文章删不删?', '提示你一哈子', {
