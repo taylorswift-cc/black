@@ -1,10 +1,64 @@
 <template>
-  <div>publish</div>
+  <div>
+    <el-card>
+      <div slot="header">
+        <my-bread>发布文章</my-bread>
+      </div>
+      <div>
+        <el-form label-width="100px">
+          <el-form-item label="标题：">
+            <el-input v-model="articleForm.title" placeholder="文章标题" style="width:400px"></el-input>
+          </el-form-item>
+          <el-form-item label="内容：">富文本框</el-form-item>
+          <el-form-item label="封面：">
+            <el-radio-group v-model="articleForm.cover.type">
+              <el-radio :label="1">单图</el-radio>
+              <el-radio :label="3">三图</el-radio>
+              <el-radio :label="0">无图</el-radio>
+              <el-radio :label="-1">自动</el-radio>
+            </el-radio-group>
+            <div class="btn-false">
+              <img src="../../assets/images/default.png" alt />
+            </div>
+          </el-form-item>
+          <el-form-item label="频道：">
+            <my-select v-model="articleForm.channel_id"></my-select>
+          </el-form-item>
+          <el-form-item>
+            <el-button type="primary">发表</el-button>
+            <el-button>存入草稿</el-button>
+          </el-form-item>
+        </el-form>
+      </div>
+    </el-card>
+  </div>
 </template>
 
 <script>
-export default {}
+export default {
+  data () {
+    return {
+      articleForm: {
+        title: null,
+        cover: {
+          type: 1
+        },
+        channel_id: null
+      }
+    }
+  }
+}
 </script>
 
-<style>
+<style lang="less" scoped>
+.btn-false {
+  width: 160px;
+  height: 160px;
+  border: 1px dashed #ddd;
+  img {
+    width: 100%;
+    height: 100%;
+    vertical-align: middle;
+  }
+}
 </style>
