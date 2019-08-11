@@ -10,8 +10,8 @@
         style="width:100%;margin-bottom:20px"
         @change="toggleAll"
       >
-        <el-radio-button label="false">全部</el-radio-button>
-        <el-radio-button label="true">收藏</el-radio-button>
+        <el-radio-button :label="false">全部</el-radio-button>
+        <el-radio-button :label="true">收藏</el-radio-button>
         <el-button type="success" size="small" style="float:right" @click="openDialog">添加素材</el-button>
       </el-radio-group>
       <div class="item_box">
